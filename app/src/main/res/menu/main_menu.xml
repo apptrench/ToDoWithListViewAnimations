@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/new_task"
+        android:icon="@drawable/ic_input_add"
+        android:title="@string/new_task"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/deleteAllRecords"
+        android:title="@string/clearDb" />
+</menu>

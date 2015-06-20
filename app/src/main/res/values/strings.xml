@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ToDoWithListViewAnimations</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_task">Add New</string>
+    <string name="save">Save</string>
+    <string name="clearDb">Clear DB</string>
+</resources>
