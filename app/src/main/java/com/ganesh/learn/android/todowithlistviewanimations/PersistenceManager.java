@@ -8,7 +8,6 @@ import android.util.Log;
 
 import static com.ganesh.learn.android.todowithlistviewanimations.DatabaseHelper.Columns.ID;
 import static com.ganesh.learn.android.todowithlistviewanimations.DatabaseHelper.Columns.PRIORITY;
-import static com.ganesh.learn.android.todowithlistviewanimations.DatabaseHelper.Columns.TASK;
 import static com.ganesh.learn.android.todowithlistviewanimations.DatabaseHelper.TABLE_NAME;
 
 /**
@@ -43,14 +42,12 @@ public class PersistenceManager {
     }
 
     public void swapPriorities(long sourceId, long destinationId) {
-        Log.i(TAG, "swapPriorities( " + sourceId + "<->" + destinationId + ")");
         int sourcePriority = getPriority(sourceId);
         int destinationPriority = getPriority(destinationId);
 
         int priorityOfRowBeforeDestination = getPriorityOfRowBeforeDestination(destinationPriority);
         int priorityOfRowAfterDestination = getPriorityOfRowAfterDestination(destinationPriority);
 
-        Log.i(TAG, "swapping priorities( destinationPriority = " + destinationPriority + "<-> sourcePriority = " + sourcePriority + ")");
         updatePriority(sourceId, newPriority(sourcePriority, destinationPriority, priorityOfRowBeforeDestination, priorityOfRowAfterDestination));
     }
 
@@ -81,7 +78,6 @@ public class PersistenceManager {
         if (!cursor.isAfterLast()) {
             priority = cursor.getInt(cursor.getColumnIndex(PRIORITY));
         }
-        Log.i(TAG, "id = " + id + " Priority = " + priority);
         cursor.close();
         return priority;
     }
@@ -93,7 +89,6 @@ public class PersistenceManager {
         if (!cursor.isAfterLast()) {
             priority = cursor.getInt(cursor.getColumnIndex(PRIORITY));
         }
-        Log.i(TAG, "PriorityOfRowBeforeDestination = " + priority);
         cursor.close();
         return priority;
     }
@@ -105,15 +100,8 @@ public class PersistenceManager {
         if (!cursor.isAfterLast()) {
             priority = cursor.getInt(cursor.getColumnIndex(PRIORITY));
         }
-        Log.i(TAG, "PriorityOfRowBeforeDestination = " + priority);
         cursor.close();
         return priority;
-    }
-
-    private ToDo cursorToToDo(Cursor cursor) {
-        String todo = cursor.getString(cursor.getColumnIndex(TASK));
-        int priority = cursor.getInt(cursor.getColumnIndex(PRIORITY));
-        return new ToDo(todo, priority);
     }
 
     public Cursor getAllToDosCursor() {
